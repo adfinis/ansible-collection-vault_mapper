@@ -1,0 +1,25 @@
+- name: Ensure output directory for {{ system }}
+  ansible.builtin.file:
+    path: "generated/{{ ansible_role_name }}/{{ system }}"
+    state: directory
+    mode: '0755'
+
+- name: Generate the manifests for {{ system }}
+  ansible.builtin.template:
+    src: "{{ item }}.yaml.j2"
+    dest: "generated/{{ ansible_role_name }}/{{ system }}/{{ item }}.yaml"
+    mode: "0600"
+  loop: "{{ templates }}"
+
+- name: Generate kustomization.yaml for {{ system }}
+  ansible.builtin.template:
+    src: "kustomization.yaml.j2"
+    dest: "generated/{{ ansible_role_name }}/{{ system }}/kustomization.yaml"
+    mode: "0600"
+
+- name: Commands for {{ system }}
+  ansible.builtin.debug:
+    msg:
+      - "Compare: kubectl diff -k generated/{{ ansible_role_name }}/{{ system }}"
+      - "Apply dry run: kubectl apply -k generated/{{ ansible_role_name }}/{{ system }} --dry-run=server"
+      - "Apply: kubectl apply -k generated/{{ ansible_role_name }}/{{ system }}"

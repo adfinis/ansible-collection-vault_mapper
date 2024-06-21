@@ -1,0 +1,51 @@
+---
+- name: Check if vault command exists
+  ansible.builtin.raw: which vault
+  check_mode: false
+  changed_when: false
+  failed_when: which_vault.rc > 1
+  register: which_vault
+
+- name: Return fail if it is not installed
+  ansible.builtin.fail:
+    msg: "vault is not installed, install first"
+  when: which_vault.rc != 0
+
+- name: Get status
+  ansible.builtin.command: vault status -address {{ vault_addr }}
+  register: vault_status
+  failed_when: vault_status.rc > 1
+  changed_when: vault_status.rc != 0
+
+- name: Fail if status error
+  ansible.builtin.fail:
+    msg: "Vault status error, login and verify vault_addr variable is correct"
+  when: vault_status.rc != 0
+
+- name: Lookup token
+  ansible.builtin.command: vault token lookup -address {{ vault_addr }}
+  register: vault_lookup
+  failed_when: vault_lookup.rc > 1
+  changed_when: vault_lookup.rc != 0
+
+- name: Fail if lookup error
+  ansible.builtin.fail:
+    msg: "Vault lookup error, login and verify vault_addr variable is correct"
+  when: vault_lookup.rc != 0
+
+- name: Get token
+  ansible.builtin.command: vault print token
+  register: vault_token
+  changed_when: vault_token.rc != 0
+
+- name: Fail if no token
+  ansible.builtin.fail:
+    msg: "No token has been returned, first login to vault!"
+  when: vault_token.stdout is not match("^hvs.*")
+
+- name: Set vault data access shorthands
+  ansible.builtin.set_fact:
+    v:
+      t: "{{ vault_token.stdout }}"
+      a: "{{ vault_addr}}"
+    a: "{{ aliases }}"

@@ -1,34 +1,31 @@
-# Ansible Collection - adfinis.TEMPLATE
+# Ansible Collection - adfinis.vault_mapper
 
-![License](https://img.shields.io/github/license/adfinis/ansible-collection-TEMPLATE)
-![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/adfinis/ansible-collection-TEMPLATE/ansible-lint.yml)
-[![adfinis.TEMPLATE on Ansible Galaxy](https://img.shields.io/badge/collection-adfinis.TEMPLATE-blue)](https://galaxy.ansible.com/ui/repo/published/adfinis/TEMPLATE/)
+![License](https://img.shields.io/github/license/adfinis/ansible-collection-vault_mapper)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/adfinis/ansible-collection-vault_mapper/ansible-lint.yml)
+[![adfinis.vault_mapper on Ansible Galaxy](https://img.shields.io/badge/collection-adfinis.vault_mapper-blue)](https://galaxy.ansible.com/ui/repo/published/adfinis/vault_mapper/)
 
 
-This should serve as a TEMPLATE to create new collections.
-
-A brief description of the collection goes here.
-
-To create a new repository from this template, follow the instructions at [Creating a repository from a template](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template).  Afterwards, clone your newly created repository and do a `git grep TEMPLATE` to find all the places where changes are required.
-
-You can submit new releases of your collection to Ansible Galaxy simply by creating a git tag and pushing it to Github. The tag name must consist of `v` followed by a semver version number, e.g. `v1.0.0`.
+A collection of roles to generate templated secrets from HashiCorp Vault.
 
 ## Roles
 
 Provide a short description of each role in your collection.  If your collection contains other artifacts such as playbooks or plugins, describe them as well.
 
-### `adfinis.TEMPLATE.example_role`
+### `adfinis.vault_mapper.common`
 
-A short description of example_role goes here, along with its options and a minimal usage example.
+Common tasks to perform operations on HashiCorp Vault.
 
+### `adfinis.vault_mapper.to_k8s`
+
+Specifics for Kubernetes resources.
 
 ## License
 
-[GPL-3.0-or-later](https://github.com/adfinis-sygroup/ansible-collection-TEMPLATE/blob/main/LICENSE)
+[GPL-3.0-or-later](https://github.com/adfinis-sygroup/ansible-collection-vault_mapper/blob/main/LICENSE)
 
 ## Author Information
 
-The Ansible collection `adfinis.TEMPLATE` was written by:
+The Ansible collection `adfinis.vault_mapper` was written by:
 
 * Adfinis AG | [Website](https://www.adfinis.com/) | [GitHub](https://github.com/adfinis)
 
