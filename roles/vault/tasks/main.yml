@@ -47,5 +47,5 @@
   ansible.builtin.set_fact:
     v:
       t: "{{ vault_token.stdout }}"
-      a: "{{ vault_addr}}"
-    a: "{{ aliases }}"
+      a: "{{ vault_addr }}"
+    a: "{{ vault_aliases }}"

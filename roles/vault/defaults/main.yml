@@ -1,2 +1,2 @@
 vault_addr: "https://vault.example.com"
-aliases: {}
+vault_aliases: {}

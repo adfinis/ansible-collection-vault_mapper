@@ -1,0 +1,27 @@
+- name: Test k8s role
+  hosts: localhost
+  vars:
+    vault_addr: https://vault.somewhere.com
+    # for looping over multiple environments. Available in templates as {{ system }} variable
+    systems:
+      - prod
+      - dev
+    # optional aliases available in templates as {{ a.key }}
+    vault_aliases:
+      # key: "value"
+      kv: "my-kv/data/servers/"
+    templates:
+    # example template
+      - default_my-secret
+  tasks:
+    - name: Import vault role
+      ansible.builtin.import_role:
+        name: adfinis.vault_mapper.vault
+        # name: vault # for local testing
+    - name: Import to_k8s role
+      ansible.builtin.include_role:
+        name: adfinis.vault_mapper.to_k8s
+        # name: to_k8s # for local testing
+      loop: "{{ systems }}"
+      loop_control:
+        loop_var: system

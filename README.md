@@ -9,15 +9,26 @@ A collection of roles to generate templated secrets from HashiCorp Vault.
 
 ## Roles
 
-Provide a short description of each role in your collection.  If your collection contains other artifacts such as playbooks or plugins, describe them as well.
-
-### `adfinis.vault_mapper.common`
+### `adfinis.vault_mapper.vault`
 
 Common tasks to perform operations on HashiCorp Vault.
 
 ### `adfinis.vault_mapper.to_k8s`
 
 Specifics for Kubernetes resources.
+
+#### Usage example
+
+Add to `requirements.yml`:
+
+```yaml
+collections:
+  - name: adfinis.vault_mapper
+    version: 1.0.0
+```
+
+See `playbook.yaml` and `templates/` in `test/`
+
 
 ## License
 
