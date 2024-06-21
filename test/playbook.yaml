@@ -17,11 +17,9 @@
     - name: Import vault role
       ansible.builtin.import_role:
         name: adfinis.vault_mapper.vault
-        # name: vault # for local testing
     - name: Import to_k8s role
       ansible.builtin.include_role:
         name: adfinis.vault_mapper.to_k8s
-        # name: to_k8s # for local testing
       loop: "{{ systems }}"
       loop_control:
         loop_var: system
