@@ -35,7 +35,7 @@ ansible-galaxy collection install -r requirements.yml
 ```
 
 
-See `playbook.yaml` and `templates/` in `test/`
+See `playbook.yaml` and `templates/` in `example/`
 
 Playbook execution is local and will generate manifests in `./generated/to_k8s/{{ system }}` directory. At end of playbook execution, it will generate example commands to execute for applying or inspecting the generated resources:
 
