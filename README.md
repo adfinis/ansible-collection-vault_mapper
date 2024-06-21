@@ -27,8 +27,28 @@ collections:
     version: 1.0.0
 ```
 
+Install requirements:
+
+```
+apt install python3-hvac
+ansible-galaxy collection install -r requirements.yml
+```
+
+
 See `playbook.yaml` and `templates/` in `test/`
 
+Playbook execution is local and will generate manifests in `./generated/to_k8s/{{ system }}` directory. At end of playbook execution, it will generate example commands to execute for applying or inspecting the generated resources:
+
+```
+TASK [to_k8s : Commands for dev] ***************************************************************************************************************************
+ok: [localhost] => {
+    "msg": [
+        "Compare: kubectl diff -k generated/to_k8s/dev",
+        "Apply dry run: kubectl apply -k generated/to_k8s/dev --dry-run=server",
+        "Apply: kubectl apply -k generated/to_k8s/dev"
+    ]
+}
+```
 
 ## License
 
